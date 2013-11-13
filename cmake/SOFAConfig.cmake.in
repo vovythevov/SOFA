@@ -1,0 +1,55 @@
+#============================================================================
+#
+# Program: SOFA
+#
+# Copyright (c) Kitware Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0.txt
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+#============================================================================
+
+#
+# SOFAConfig.cmake - SOFA CMake configuration file for external projects.
+#
+# This file is configured by SOFA and used by the UseSOFA.cmake module
+# to load SOFA's settings for an external project.
+
+# Global configuration options.
+
+set(SOFA_BUILD_SHARED_LIBS "@BUILD_SHARED_LIBS@")
+
+# The C and C++ flags added by SOFA to the cmake-configured flags.
+set(SOFA_REQUIRED_C_FLAGS "@CMAKE_C_FLAGS@")
+set(SOFA_REQUIRED_CXX_FLAGS "@CMAKE_CXX_FLAGS@")
+set(SOFA_REQUIRED_EXE_LINKER_FLAGS "@CMAKE_EXE_LINKER_FLAGS@")
+set(SOFA_REQUIRED_SHARED_LINKER_FLAGS "@CMAKE_SHARED_LINKER_FLAGS@")
+set(SOFA_REQUIRED_MODULE_LINKER_FLAGS "@CMAKE_MODULE_LINKER_FLAGS@")
+
+# The SOFA version number
+set(SOFA_VERSION_MAJOR @SOFA_VERSION_MAJOR@)
+set(SOFA_VERSION_MINOR @SOFA_VERSION_MINOR@)
+set(SOFA_VERSION_PATCH @SOFA_VERSION_PATCH@)
+set(SOFA_VERSION @SOFA_VERSION@)
+
+# The location of the UseSOFA.cmake file.
+set(SOFA_CMAKE_DIR "@SOFA_CMAKE_DIR@")
+set(SOFA_USE_FILE "${SOFA_CMAKE_DIR}/UseSOFA.cmake")
+set(SOFA_SOURCE_DIR "@SOFA_SRC_DIR@")
+
+# Targets to link with
+set(SOFA_LIBRARIES "@SOFA_LIBRARIES@")
+set(SOFA_EXTERNAL_LIBRARIES "@SOFA_EXTERNAL_LIBRARIES@")
+set(SOFA_INCLUDE_DIRS "@SOFA_INCLUDE_DIRS@")
+set(SOFA_LIBRARY_DIRS "@SOFA_LIB_DIR@")
+set(SOFA_DEFINES @SOFA_DEFINES@)
+
