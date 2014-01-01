@@ -32,6 +32,10 @@ set(SOFA_TOOLS_DIR "${SOFA_SRC_DIR}/tools" CACHE INTERNAL "Path to the Sofa tool
 set(SOFA_CUDA_DIR "${SOFA_APPLICATIONS_DIR}/plugins/SofaCUDA" CACHE INTERNAL "Path to the SofaCuda directory")
 
 # useful settings
+set(SOFA_VERSION_MAJOR 1)
+set(SOFA_VERSION_MINOR 0)
+set(SOFA_VERSION_PATCH 0)
+set(SOFA_VERSION ${SOFA_VERSION_MAJOR}.${SOFA_VERSION_MINOR}.${SOFA_VERSION_PATCH})
 set(SOFA_VERSION_NUM "1_0" CACHE STRING "Version number for this build.")
 
 ## os-specific
