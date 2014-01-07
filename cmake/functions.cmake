@@ -291,6 +291,7 @@ function(RetrieveDependencies projectsPath optionPrefix optionDescription defini
 					file(GLOB solutionPath "${dependencyDir}/CMakeLists.txt")
 					if(solutionPath)
 						string(REPLACE "/CMakeLists.txt" "" solutionFolder ${solutionPath})
+						option("${optionPrefix}${dependencyToUpperName}" "${optionDescription} ${dependencyName}" OFF)
 						get_filename_component(solutionName ${solutionFolder} NAME)
 						if(NOT dependencyToUpperName MATCHES ".*_TEST.*")
 							option("${optionName}" "${optionDescription} ${dependencyName}" OFF)

@@ -98,4 +98,10 @@ if(TARGET ${PROJECT_NAME})
 		#message("${PROJECT_NAME} in ${GLOBAL_PROJECT_OPTION_FOLDER_${PROJECT_NAME}}")
 		set_target_properties(${PROJECT_NAME} PROPERTIES FOLDER "${GLOBAL_PROJECT_OPTION_FOLDER_${PROJECT_NAME}}") 
 	endif()
+
+  get_target_property(target_type ${PROJECT_NAME} TYPE)
+  if(NOT ${target_type} STREQUAL "UTILITY")
+    export(TARGETS ${PROJECT_NAME} APPEND FILE ${SOFA_BUILD_DIR}/SOFATargets.cmake)
+  endif()
+
 endif()

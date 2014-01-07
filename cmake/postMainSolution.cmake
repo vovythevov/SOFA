@@ -33,7 +33,42 @@ if(PRECONFIGURE_DONE)
 			message(STATUS "${FINAL_LOG}")
 		endif()
 	endif()
-	
+
+  #  Write SOFAConfig.cmake to make Sofa available as an external library to another cmake project.
+  set(SOFA_EXTERNAL_LIBRARIES ${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} ${GLUT_LIBRARIES} ${PNG_LIBRARIES} ${METIS_LIBRARIES} ${ZLIB_LIBRARIES})
+  set(SOFA_LIBRARIES)
+  set(SOFA_INCLUDE_DIRS)
+  set(SOFA_DEFINES)
+
+  if (WIN32)
+    set(bitness 32)
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+      set(bitness 64)
+    endif()
+    set(SOFA_EXTERNAL_LIBRARY_DIRS "${SOFA_SRC_DIR}/lib/win${bitness}")
+  else ()
+    foreach(external_lib ${SOFA_EXTERNAL_LIBRARIES})
+      get_target_property(loc ${external_lib} LOCATION)
+      set(SOFA_EXTERNAL_LIBRARY_DIRS ${SOFA_EXTERNAL_LIBRARY_DIRS} ${loc})
+    endforeach()
+  endif ()
+
+  set(projectNames ${GLOBAL_DEPENDENCIES})
+  foreach(projectName ${projectNames})
+    get_target_property(buildType ${projectName} TYPE)
+    if(buildType AND (NOT ${buildType} STREQUAL "EXECUTABLE") AND (NOT ${buildType} STREQUAL "UTILITY"))
+      set(SOFA_LIBRARIES ${SOFA_LIBRARIES} ${projectName})
+      set(SOFA_INCLUDE_DIRS ${SOFA_INCLUDE_DIRS} ${${projectName}_INCLUDE_DIR})
+      set(SOFA_DEFINES ${SOFA_DEFINES} ${GLOBAL_PROJECT_REGISTERED_COMPILER_DEFINITIONS_${projectName}})
+    endif()
+  endforeach()
+  list(REMOVE_DUPLICATES SOFA_LIBRARIES)
+  list(REMOVE_DUPLICATES SOFA_INCLUDE_DIRS)
+  list(REMOVE_DUPLICATES SOFA_DEFINES)
+
+  configure_file(${SOFA_CMAKE_DIR}/SOFAConfig.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/SOFAConfig.cmake @ONLY)
+
 endif()
 
 set(PRECONFIGURE_DONE 1 CACHE INTERNAL "Configure does not set projects up, it just displays options")
