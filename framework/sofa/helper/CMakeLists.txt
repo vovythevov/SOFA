@@ -206,7 +206,7 @@ if(SOFA-EXTERNAL_BOOST)
     AddLinkerDependencies(${Boost_LIBRARIES})
 endif()
 
-AddSourceDependencies(eigen) 
+AddSourceDependencies(eigen GLEW)
 
 include(${SOFA_CMAKE_DIR}/postProject.cmake)
 
