@@ -41,11 +41,7 @@ if(PRECONFIGURE_DONE)
   set(SOFA_DEFINES)
 
   if (WIN32)
-    set(bitness 32)
-    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-      set(bitness 64)
-    endif()
-    set(SOFA_EXTERNAL_LIBRARY_DIRS "${SOFA_SRC_DIR}/lib/win${bitness}")
+    set(SOFA_EXTERNAL_LIBRARY_DIRS ${SOFA_LIB_OS_DIR})
   else ()
     foreach(external_lib ${SOFA_EXTERNAL_LIBRARIES})
       get_target_property(loc ${external_lib} LOCATION)
@@ -68,6 +64,9 @@ if(PRECONFIGURE_DONE)
 
   configure_file(${SOFA_CMAKE_DIR}/SOFAConfig.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/SOFAConfig.cmake @ONLY)
+
+  # install sofa dependencies
+  include(${SOFA_CMAKE_DIR}/installExternalLibraries.cmake)
 
 endif()
 

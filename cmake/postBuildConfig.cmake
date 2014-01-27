@@ -102,6 +102,11 @@ if(TARGET ${PROJECT_NAME})
   get_target_property(target_type ${PROJECT_NAME} TYPE)
   if(NOT ${target_type} STREQUAL "UTILITY")
     export(TARGETS ${PROJECT_NAME} APPEND FILE ${SOFA_BUILD_DIR}/SOFATargets.cmake)
+    install(TARGETS ${PROJECT_NAME}
+      RUNTIME DESTINATION ${SOFA-INSTALL_BIN_DIR} COMPONENT RuntimeLibraries
+      LIBRARY DESTINATION ${SOFA-INSTALL_LIB_DIR} COMPONENT RuntimeLibraries
+      ARCHIVE DESTINATION ${SOFA-INSTALL_BIN_DIR} COMPONENT Development
+      )
   endif()
 
 endif()

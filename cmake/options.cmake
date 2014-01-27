@@ -480,4 +480,12 @@ RetrieveDependencies("${SOFA_APPLICATIONS_DEV_PROJECTS_DIR}" "SOFA-DEVAPPLICATIO
 set(SOFA_PROJECT_FOLDER "")
 # configurable paths to use pre-compiled dependencies outside of the Sofa directory
 
+# Install variables
+set(SOFA-INSTALL_BIN_DIR "bin" CACHE PATH "Install path for SOFA executables")
+mark_as_advanced(SOFA-INSTALL_BIN_DIR)
+
+set(SOFA-INSTALL_LIB_DIR "bin" CACHE PATH "Install path for SOFA libraries")
+mark_as_advanced(SOFA-INSTALL_LIB_DIR)
+
+
 set(GLOBAL_COMPILER_DEFINES ${GLOBAL_COMPILER_DEFINES} ${compilerDefines} CACHE INTERNAL "Global Compiler Defines" FORCE)
